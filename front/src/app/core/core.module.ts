@@ -18,6 +18,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LogInComponent } from './components/log-in/log-in.component';
+import { provideHttpClient } from "@angular/common/http";
 
 
 
@@ -46,6 +47,7 @@ import { LogInComponent } from './components/log-in/log-in.component';
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'fr-FR' },
+        provideHttpClient(),
     ],
     exports: [
         LandingPageComponent,
