@@ -34,6 +34,38 @@ export class AuthService {
     }
 
     /**
+     * Use to know if user is connected
+     * @returns boolean
+     */
+    isLoggedIn(): boolean {
+        if (this.getToken()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Use to know if user is disconnected
+     * @returns boolean
+     */
+    isLoggedOut(): boolean {
+        if (this.getToken() == null) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Force user logOut
+     */
+    logOut() {
+        let removeItem = localStorage.removeItem(this.param);
+        if (removeItem == null)
+            this.router.navigateByUrl('');
+    }
+
+    /**
      * Permit to register a new user
      * @param user : user credentials
      * @returns Observable<AuthRequest>

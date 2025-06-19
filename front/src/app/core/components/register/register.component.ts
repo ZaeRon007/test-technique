@@ -37,7 +37,7 @@ export class RegisterComponent implements OnDestroy {
       })
     ).subscribe((response: any) => {
       this.authService.setToken(response.token);
-      this.router.navigateByUrl('/alten/shop');
+      this.router.navigateByUrl('/shop');
     });
 
   }

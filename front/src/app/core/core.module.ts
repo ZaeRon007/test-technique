@@ -19,6 +19,8 @@ import { AuthComponent } from './components/auth/auth.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { provideHttpClient } from "@angular/common/http";
+import { AuthGuard } from "./guards/auth.guard";
+import { UnAuthGuard } from "./guards/unauth.guard";
 
 
 
@@ -47,6 +49,8 @@ import { provideHttpClient } from "@angular/common/http";
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'fr-FR' },
+        AuthGuard,
+        UnAuthGuard,
         provideHttpClient(),
     ],
     exports: [
