@@ -13,10 +13,10 @@ export class AuthComponent {
   }
 
   public register() {
-    this.router.navigateByUrl('/register');
+    this.router.navigateByUrl('/auth/register');
   }
 
   public logIn() {
-    this.router.navigateByUrl('/logIn');
+    this.router.navigateByUrl('/auth/logIn');
   }
 }

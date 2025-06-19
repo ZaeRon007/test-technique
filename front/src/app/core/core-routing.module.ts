@@ -9,8 +9,8 @@ import { LandingPageComponent } from "./components/landing-page/landing-page.com
 const routes: Routes = [
     { path: '', component: LandingPageComponent},
     { path: 'auth', component: AuthComponent},
-    { path: 'register', component: RegisterComponent},
-    { path: 'logIn', component: LogInComponent},
+    { path: 'auth/register', component: RegisterComponent},
+    { path: 'auth/logIn', component: LogInComponent},
     { path: '404', component: NotFoundComponent},
 ]
 

@@ -12,7 +12,7 @@ import com.alten.shop.model.response.simpleToken;
 import com.alten.shop.services.userService;
 
 @RestController
-@RequestMapping("/alten")
+@RequestMapping("/alten/auth")
 public class userController {
     
     @Autowired

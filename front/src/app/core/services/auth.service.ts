@@ -31,7 +31,7 @@ export class AuthService {
     setToken(token: string) {
         localStorage.setItem(this.param, token);
     }
-
+    
     /**
      * Permit to register a new user
      * @param user : user credentials
@@ -39,6 +39,6 @@ export class AuthService {
      */
     registerUser(user: authRequest): Observable<authRequest> {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        return this.http.post<authRequest>(`${this.apiUrl}register`, user, { headers });
+        return this.http.post<authRequest>(`${this.apiUrl}auth/register`, user, { headers });
     }
 }
