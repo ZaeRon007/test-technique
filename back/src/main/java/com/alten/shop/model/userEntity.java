@@ -8,10 +8,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "users", uniqueConstraints =  {@UniqueConstraint(columnNames = "email")})
+@NoArgsConstructor
 public class userEntity {
 
     @Id

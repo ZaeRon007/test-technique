@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alten.shop.model.dto.userLogInDto;
 import com.alten.shop.model.dto.userRegisterDto;
 import com.alten.shop.model.response.simpleToken;
 import com.alten.shop.services.userService;
@@ -23,7 +24,17 @@ public class userController {
         String token = userService.register(userRegisterDto);
 
         if(token.isEmpty())
-            return ResponseEntity.badRequest().body("Username already exist !");
+            return ResponseEntity.badRequest().body("Username already exist !!");
+
+        return ResponseEntity.ok().body(new simpleToken(token));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> userLogIn(@RequestBody userLogInDto userLogInDto){
+        String token = userService.logIn(userLogInDto);
+
+        if(token.isEmpty())
+            return ResponseEntity.badRequest().body("email or password is invalid !!");
 
         return ResponseEntity.ok().body(new simpleToken(token));
     }

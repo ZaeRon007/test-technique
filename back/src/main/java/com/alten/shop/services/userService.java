@@ -1,10 +1,13 @@
 package com.alten.shop.services;
 
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alten.shop.model.userEntity;
+import com.alten.shop.model.dto.userLogInDto;
 import com.alten.shop.model.dto.userRegisterDto;
 import com.alten.shop.repository.userRepository;
 
@@ -19,6 +22,9 @@ public class userService {
 
     @Autowired
     PasswordEncoder PasswordEncoder;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     /**
      * create a new user from database
@@ -49,5 +55,19 @@ public class userService {
         userRepository.save(userToAdd);
         
         return jwtService.generateToken(userToAdd);
+    }
+
+    public String logIn(userLogInDto userLogInDto) {
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogInDto.getEmail(), userLogInDto.getPassword()));
+            userEntity userToLogIn = userRepository.findByEmail(userLogInDto.getEmail());
+            userToLogIn.setUpdatedAt(new TimeService().getTime());
+            userRepository.save(userToLogIn);
+
+            return jwtService.generateToken(userToLogIn);
+        } catch (Exception e) {
+            System.out.printf("Exception: %s\n", e);
+            return "";
+        }
     }
 }
