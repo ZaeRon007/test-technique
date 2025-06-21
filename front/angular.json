@@ -33,6 +33,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+                "src/assets/icons/icon-72x72.png",
               {
                 "glob": "**/*",
                 "input": "public"
