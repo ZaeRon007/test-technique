@@ -1,0 +1,20 @@
+.example-container {
+  width: auto;
+  height: 200px;
+  margin: 10px;
+  
+  background: #eee;
+
+  mat-drawer, button {
+    border-radius: 0px;
+  }
+
+  button {
+    justify-content: left;
+  }
+  
+  .flex-column {
+      display: flex;
+      flex-direction: column;
+  }
+}

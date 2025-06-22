@@ -1,0 +1,20 @@
+<app-full-header></app-full-header>
+
+<mat-drawer-container class="example-container">
+      <mat-drawer mode="side" opened>
+            <div class="flex-column">
+                  <button mat-raised-button (click)="home()">accueil
+                        <mat-icon>home</mat-icon>
+                  </button>
+                  <button mat-raised-button (click)="products()">products
+                        <mat-icon>vertical_split</mat-icon>
+                  </button>
+            </div>
+      </mat-drawer>
+      <mat-drawer-content>
+            <app-home *ngIf="showProducts == false; else displayProducts"></app-home>
+            <ng-template #displayProducts>
+                  <app-products></app-products>
+            </ng-template>
+      </mat-drawer-content>
+</mat-drawer-container>
