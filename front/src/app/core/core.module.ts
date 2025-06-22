@@ -21,6 +21,8 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { provideHttpClient } from "@angular/common/http";
 import { AuthGuard } from "./guards/auth.guard";
 import { UnAuthGuard } from "./guards/unauth.guard";
+import { FullHeaderComponent } from './components/headers/full-header/full-header.component';
+import { SimpleHeaderComponent } from "./components/headers/simple-header/simple-header.component";
 
 
 
@@ -31,6 +33,8 @@ import { UnAuthGuard } from "./guards/unauth.guard";
         AuthComponent,
         RegisterComponent,
         LogInComponent,
+        FullHeaderComponent,
+        SimpleHeaderComponent,
     ],
     imports: [
         CommonModule,
@@ -59,6 +63,19 @@ import { UnAuthGuard } from "./guards/unauth.guard";
         AuthComponent,
         RegisterComponent,
         LogInComponent,
+        FullHeaderComponent,
+        CoreRoutingModule,
+        FormsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        MatGridListModule,
+        MatCardModule,
+        MatDividerModule,
+        MatIconModule,
+        MatSidenavModule,
+        CommonModule,
     ]
 })
 export class CoreModule {
