@@ -36,7 +36,7 @@ export class LogInComponent {
       })
     ).subscribe((response: any) => {
       this.authService.setToken(response.token);
-      this.router.navigateByUrl(`/shop`);
+      this.router.navigateByUrl(`/shop/home`);
     });
   }
 
