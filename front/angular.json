@@ -34,6 +34,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
                 "src/assets/icons/icon-72x72.png",
+                "src/assets/pictures",
+                "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
