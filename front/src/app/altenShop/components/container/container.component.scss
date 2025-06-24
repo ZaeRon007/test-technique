@@ -1,20 +1,34 @@
-.example-container {
-  width: auto;
-  height: 200px;
-  margin: 10px;
-  
-  background: #eee;
+.mat-drawer-container {
+  // width: auto;
+  // height: 200px;
 
-  mat-drawer, button {
+  mat-drawer,
+  button {
     border-radius: 0px;
   }
 
   button {
     justify-content: left;
   }
-  
+
   .flex-column {
-      display: flex;
-      flex-direction: column;
+    display: flex;
+    flex-direction: column;
   }
+
+  .vertical-divider {
+    display: flex;
+    border: 0;
+    padding: 10px;
+  }
+}
+
+.mat-drawer-container,
+.mat-drawer,
+.mat-mdc-raised-button:not(:disabled) {
+  background-color: white;
+}
+
+.mat-drawer-side {
+  border-right-color: black;
 }
