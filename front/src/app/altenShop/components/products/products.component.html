@@ -1,1 +1,37 @@
-<p>products works!</p>
+<div class="centerDiv">
+    <h1>Liste des produits</h1>
+
+    <button mat-flat-button>Créer un produit</button>
+
+    <div class="gridlist gap">
+        <mat-card *ngFor="let product of productsTab" class="card">
+            <mat-card-title>
+                <h3 class="center">{{product.name}}</h3>
+            </mat-card-title>
+            <img class="center" src="/assets/pictures/{{product.image}}" alt="product image">
+            <mat-card-subtitle>
+                <p class="justify-text">{{product.description}}</p>
+            </mat-card-subtitle>
+            <mat-card-content>
+                <div class="row smallGap center">
+                    <div class="row">
+                        <p>{{product.rating}}</p>
+                        <mat-icon class="yellow">stars</mat-icon>
+                    </div>
+
+                    <div class="row">
+                        <p>{{product.inventoryStatus}}</p>
+                        <mat-icon *ngIf="product.inventoryStatus === 'INSTOCK'" class="green">check_circle</mat-icon>
+                        <mat-icon *ngIf="product.inventoryStatus === 'OUTOFSTOCK'" class="red">error</mat-icon>
+                        <mat-icon *ngIf="product.inventoryStatus === 'LOWSTOCK'" class="orange">warning</mat-icon>
+                    </div>
+                </div>
+                <div class="row center">
+                    <p>{{product.price}}</p>
+                    <mat-icon>euro_symbol</mat-icon>
+                </div>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+.centerDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    mat-grid-tile {
+      background: lightblue;
+    }
+
+    mat-card {
+        margin-top: 30px;
+    }
+
+    .gridlist {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .gap {
+        gap: 1rem;
+    }
+
+    .smallGap {
+        gap: 10px;
+    }
+
+    .card {
+        width: 300px;
+        height: auto;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+    }
+
+    mat-icon {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .justify-text {
+        text-align: justify;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    img {
+        height: 275px;
+        width: 275px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .green {
+        color: green;
+    }
+    .red {
+        color: red;
+    }
+    .orange {
+        color: orange;
+    }
+    .yellow {
+        color: rgb(255, 196, 0);
+    }
+}
