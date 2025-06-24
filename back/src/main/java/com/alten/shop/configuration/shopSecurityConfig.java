@@ -35,7 +35,7 @@ public class shopSecurityConfig {
 	/**
 	 * Fonction permettant de configurer une chaine de filtre : 
 	 * - Le Cross Origin Platform est activé avec les paramètres par défaut
-	 * - Les routes "/api/auth/* sont publiques et le reste est privé (nécessite une authentification)"
+	 * - Les routes "/alten/auth/* sont publiques et le reste est privé (nécessite une authentification)"
 	 * - Oauth2 est configuré pour utiliser jwt comme méthode d'authentification (Json Web Token)
 	 */
 	@Bean
