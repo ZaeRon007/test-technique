@@ -9,12 +9,14 @@
                   <button mat-raised-button (click)="products()">produits
                         <mat-icon>vertical_split</mat-icon>
                   </button>
+                  <button mat-raised-button (click)="contact()">contact
+                        <mat-icon>contact_support</mat-icon>
+                  </button>
             </div>
       </mat-drawer>
       <mat-drawer-content>
-            <app-home *ngIf="showProducts == false; else displayProducts"></app-home>
-            <ng-template #displayProducts>
-                  <app-products></app-products>
-            </ng-template>
+            <app-home *ngIf="menuIndex == 0"></app-home>
+            <app-products *ngIf="menuIndex == 1"></app-products>
+            <app-contact *ngIf="menuIndex == 2"></app-contact>
       </mat-drawer-content>
 </mat-drawer-container>
