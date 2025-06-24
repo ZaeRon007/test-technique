@@ -18,11 +18,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LogInComponent } from './components/log-in/log-in.component';
-import { provideHttpClient } from "@angular/common/http";
+import { HttpClientModule, provideHttpClient } from "@angular/common/http";
 import { AuthGuard } from "./guards/auth.guard";
 import { UnAuthGuard } from "./guards/unauth.guard";
 import { FullHeaderComponent } from './components/headers/full-header/full-header.component';
 import { SimpleHeaderComponent } from "./components/headers/simple-header/simple-header.component";
+import { HttpInterceptorProviders } from "./interceptors";
 
 
 
@@ -50,12 +51,14 @@ import { SimpleHeaderComponent } from "./components/headers/simple-header/simple
         MatDividerModule,
         MatIconModule,
         MatSidenavModule,
+        HttpClientModule
     ],
     providers: [
         { provide: LOCALE_ID, useValue: 'fr-FR' },
         AuthGuard,
         UnAuthGuard,
-        provideHttpClient(),
+        HttpInterceptorProviders,
+        // provideHttpClient(),
     ],
     exports: [
         LandingPageComponent,
