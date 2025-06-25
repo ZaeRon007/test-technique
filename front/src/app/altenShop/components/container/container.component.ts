@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ProductService } from '../../services/productService';
 import { productEntity } from '../../../core/models/productEntity';
+import { MenuService } from '../../services/menuService';
 
 @Component({
   selector: 'app-container',
@@ -9,17 +10,20 @@ import { productEntity } from '../../../core/models/productEntity';
   styleUrl: './container.component.scss'
 })
 export class ContainerComponent { 
-  public menuIndex : number = 0;
+
+  constructor(public menu: MenuService){
+
+  }
   
   public home(){
-    this.menuIndex = 0;
+    this.menu.setMenuIndex(0);
   }
   
   public products(){
-    this.menuIndex = 1;
+    this.menu.setMenuIndex(1);
   }
   
   public contact(){
-    this.menuIndex = 2;
+    this.menu.setMenuIndex(2);
   }
 }
