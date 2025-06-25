@@ -8,5 +8,5 @@ import com.alten.shop.model.userBasketEntity;
 @Repository
 public interface userBasketRepository extends CrudRepository<userBasketEntity,Integer>{
     userBasketEntity findByProductIdAndUserId(int product_id, int user_id);
-    
+    userBasketEntity[] findByUserId(int id);
 }

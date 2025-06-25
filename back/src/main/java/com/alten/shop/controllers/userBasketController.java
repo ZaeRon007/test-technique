@@ -5,6 +5,7 @@ import java.text.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,16 @@ public class userBasketController {
     @Autowired
     userBasketService userBasketService;
 
+    @GetMapping("")
+    public ResponseEntity<?> getAllProductsFromBasket() throws ParseException{
+        return ResponseEntity.ok().body(userBasketService.getAllProducts());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAmountInUserBasket(@PathVariable String id) throws ParseException{
+        return ResponseEntity.ok().body(userBasketService.getAmountInUserBasket(id));
+    }
+
     @PostMapping("/{id}")
     public ResponseEntity<?> addProductToUserBasket(@PathVariable String id, @RequestBody userBasketDto userBasketDto) throws ParseException{
         return ResponseEntity.ok().body(userBasketService.addProductToUserBasket(id, userBasketDto));
@@ -34,6 +45,6 @@ public class userBasketController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProductToUserBasket(@PathVariable String id) throws NumberFormatException, ParseException{
         userBasketService.deleteProductFromUserBasket(id);
-        return ResponseEntity.ok().body("item deleted !!");
+        return ResponseEntity.ok().body(null);
     }
 }

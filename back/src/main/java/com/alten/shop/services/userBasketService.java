@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alten.shop.model.userBasketEntity;
+import com.alten.shop.model.dto.itemAmountInUserBasketDto;
 import com.alten.shop.model.dto.userBasketDto;
 import com.alten.shop.repository.userBasketRepository;
 
@@ -17,8 +18,10 @@ public class userBasketService {
     @Autowired
     userBasketRepository userBasketRepository;
 
-    public userBasketEntity addProductToUserBasket(String product_id, userBasketDto userBasketDto) throws ParseException {
-        userBasketEntity entity = userBasketRepository.findByProductIdAndUserId(Integer.parseInt(product_id), userService.getMe());
+    public userBasketEntity addProductToUserBasket(String product_id, userBasketDto userBasketDto)
+            throws ParseException {
+        userBasketEntity entity = userBasketRepository.findByProductIdAndUserId(Integer.parseInt(product_id),
+                userService.getMe());
 
         if (entity != null) {
             entity.setQuantity(entity.getQuantity() + userBasketDto.getQuantity());
@@ -38,8 +41,10 @@ public class userBasketService {
 
     }
 
-    public Object patchProductFromUserBasket(String product_id, userBasketDto userBasketDto) throws NumberFormatException, ParseException {
-        userBasketEntity entity = userBasketRepository.findByProductIdAndUserId(Integer.parseInt(product_id),userService.getMe());
+    public Object patchProductFromUserBasket(String product_id, userBasketDto userBasketDto)
+            throws NumberFormatException, ParseException {
+        userBasketEntity entity = userBasketRepository.findByProductIdAndUserId(Integer.parseInt(product_id),
+                userService.getMe());
         entity.setQuantity(userBasketDto.getQuantity());
         entity.setUpdatedAt(new TimeService().getTime());
         userBasketRepository.save(entity);
@@ -47,7 +52,18 @@ public class userBasketService {
     }
 
     public void deleteProductFromUserBasket(String product_id) throws NumberFormatException, ParseException {
-        userBasketRepository.delete(userBasketRepository.findByProductIdAndUserId(Integer.parseInt(product_id),userService.getMe()));
+        userBasketRepository.delete(
+                userBasketRepository.findByProductIdAndUserId(Integer.parseInt(product_id), userService.getMe()));
+    }
+
+    public userBasketEntity[] getAllProducts() throws ParseException {
+        return userBasketRepository.findByUserId(userService.getMe());
+    }
+
+    public itemAmountInUserBasketDto getAmountInUserBasket(String id) throws NumberFormatException, ParseException {
+        itemAmountInUserBasketDto item = new itemAmountInUserBasketDto();
+        item.setQuantity(userBasketRepository.findByProductIdAndUserId(Integer.parseInt(id), userService.getMe()).getQuantity());
+        return item;
     }
 
 }
