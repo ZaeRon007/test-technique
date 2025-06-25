@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.alten.shop.model.userBasketEntity;
 import com.alten.shop.model.dto.userBasketDto;
+import com.alten.shop.model.dto.usernameDto;
 import com.alten.shop.repository.userBasketRepository;
 
 @Service
@@ -63,6 +64,12 @@ public class userBasketService {
         userBasketDto item = new userBasketDto();
         item.setQuantity(userBasketRepository.findByProductIdAndUserId(Integer.parseInt(id), userService.getMe()).getQuantity());
         return item;
+    }
+
+    public usernameDto getUsername() {
+        usernameDto user = new usernameDto();
+        user.setUsername(userService.getUsername());
+        return user;
     }
 
 }

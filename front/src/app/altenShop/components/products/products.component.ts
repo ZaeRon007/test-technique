@@ -1,15 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProductService } from '../../services/productService';
-import { BehaviorSubject, combineLatest, map, Observable, Subscription, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { productEntity } from '../../../core/models/productEntity';
-import { userWishsEntity } from '../../../core/models/userWishsEntity';
-import { userBasketEntity } from '../../../core/models/userBasketEntity';
 import { UserBasketService } from '../../services/userBasketService';
 import { UserWishsService } from '../../services/userWishsService';
-import { userBasketAddDto } from '../../../core/models/dto/userBasketAddDto';
 import { ProductWithQuantity } from '../../../core/models/ProductWithQuantity';
-import { Q } from '@angular/cdk/keycodes';
 import { GlobalService } from '../../services/globalService';
+import { userService } from '../../services/userService';
 
 @Component({
   selector: 'app-products',
@@ -20,13 +16,15 @@ export class ProductsComponent implements OnInit, OnDestroy {
   private sub1: Subscription = new Subscription();
   private sub2: Subscription = new Subscription();
   private sub3: Subscription = new Subscription();
+  private sub4: Subscription = new Subscription();
   productsTab$ = new BehaviorSubject<productEntity[]>([]);
   public productsWithQuantities$!: Observable<ProductWithQuantity[]>;
+  public isAdmin: boolean = false;
 
   constructor(private globalService: GlobalService,
     private basketService: UserBasketService,
-    private wishsService: UserWishsService
-  ) {
+    private wishsService: UserWishsService,
+    private userService: userService) {
   }
 
   ngOnInit(): void {
@@ -38,12 +36,20 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.sub2 = this.wishsService.getUserWishs().subscribe();
 
     this.productsWithQuantities$ = this.globalService.Init();
+
+    this.sub4 = this.userService.isAccountAdmin$().subscribe(res => {
+      if(res)
+        this.isAdmin = true;
+      else
+        this.isAdmin = false;
+    })
   }
 
   ngOnDestroy(): void {
     this.sub1.unsubscribe();
     this.sub2.unsubscribe();
     this.sub3.unsubscribe();
+    this.sub4.unsubscribe();
   }
 
   isInWishList(product_id: number): boolean {

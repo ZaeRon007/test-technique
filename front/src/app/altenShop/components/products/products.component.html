@@ -1,11 +1,16 @@
 <div class="centerDiv">
     <h1>Liste des produits</h1>
 
-    <button mat-flat-button>Créer un produit</button>
+    <button mat-flat-button *ngIf="isAdmin">Créer un produit</button>
 
     <div class="gridlist gap">
         <ng-container *ngIf="productsWithQuantities$ | async as products">
             <mat-card *ngFor="let product of products" class="card">
+                <div *ngIf="isAdmin" class="row">
+                    <mat-icon>edit</mat-icon>
+                    <mat-icon class="red">cancel</mat-icon>
+                </div>
+
                 <mat-icon *ngIf="!isInWishList(product.id)" class="align_right lightGrey"
                     (click)="addToWishs(product.id)">featured_play_list</mat-icon>
                 <mat-icon *ngIf="isInWishList(product.id)" class="align_right like"

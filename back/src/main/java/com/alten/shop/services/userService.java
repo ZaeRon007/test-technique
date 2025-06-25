@@ -89,4 +89,19 @@ public class userService {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByEmail(username).getId();
     }
+
+    /**
+     * return username of the connected user
+     * @return
+     */
+    public String getUsername() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
+    }
+
+    /**
+     * Fonction permettant de vérifier que l'utilisateur est bien administrateur
+     */
+    public boolean canActivate(){
+        return getUsername() == "admin@admin.com";
+    }
 }

@@ -22,6 +22,11 @@ public class userBasketController {
     @Autowired
     userBasketService userBasketService;
 
+    @GetMapping("me")
+    public ResponseEntity<?> getUsername(){
+        return ResponseEntity.ok().body(userBasketService.getUsername());
+    }
+
     @GetMapping("")
     public ResponseEntity<?> getAllProductsFromBasket() throws ParseException{
         return ResponseEntity.ok().body(userBasketService.getAllProducts());
