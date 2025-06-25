@@ -7,8 +7,11 @@
         
         <div class="row gap">
             <button mat-flat-button color="primary" (click)="logOut()">se déconnecter</button>
+            <a [routerLink]="['/shop/wishs']">
+                <mat-icon [matBadge]="wishCount$ | async">featured_play_list</mat-icon>
+            </a>
             <a [routerLink]="['/shop/basket']">
-                <mat-icon>shopping_cart</mat-icon>
+                <mat-icon [matBadge]="cartSize$ | async" (click)="cartMenu()">shopping_cart</mat-icon>
             </a>
         </div>
 
