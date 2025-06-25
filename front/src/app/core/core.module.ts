@@ -24,6 +24,7 @@ import { UnAuthGuard } from "./guards/unauth.guard";
 import { FullHeaderComponent } from './components/headers/full-header/full-header.component';
 import { SimpleHeaderComponent } from "./components/headers/simple-header/simple-header.component";
 import { HttpInterceptorProviders } from "./interceptors";
+import { MatBadgeModule } from "@angular/material/badge";
 
 
 
@@ -51,6 +52,7 @@ import { HttpInterceptorProviders } from "./interceptors";
         MatDividerModule,
         MatIconModule,
         MatSidenavModule,
+        MatBadgeModule,
         HttpClientModule
     ],
     providers: [
