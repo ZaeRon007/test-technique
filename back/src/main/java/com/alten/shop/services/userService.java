@@ -2,7 +2,11 @@ package com.alten.shop.services;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +61,11 @@ public class userService {
         return jwtService.generateToken(userToAdd);
     }
 
+    /**
+     * authenticate a user
+     * @param userLoginDto user to authenticate
+     * @return a new token for user
+     */
     public String logIn(userLogInDto userLogInDto) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogInDto.getEmail(), userLogInDto.getPassword()));
@@ -69,5 +78,15 @@ public class userService {
             System.out.printf("Exception: %s\n", e);
             return "";
         }
+    }
+
+    /**
+     * get the authenticated user from database
+     * @return the authenticated user
+     * @throws ParseException
+     */
+    public int getMe() throws ParseException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByEmail(username).getId();
     }
 }
