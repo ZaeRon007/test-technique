@@ -8,4 +8,5 @@ import com.alten.shop.model.userWishListEntity;
 @Repository
 public interface userWishListRepository extends CrudRepository<userWishListEntity,Integer>{
     userWishListEntity findByProductIdAndUserId(int product_id, int user_id);
+    userWishListEntity[] findByUserId(int id);
 }

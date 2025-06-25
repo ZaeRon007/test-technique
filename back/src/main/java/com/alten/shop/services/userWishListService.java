@@ -37,5 +37,9 @@ public class userWishListService {
     public void deleteProductFromUserWishList(String product_id) throws NumberFormatException, ParseException {
         userWishListRepository.delete(userWishListRepository.findByProductIdAndUserId(Integer.parseInt(product_id),userService.getMe()));
     }
+
+    public userWishListEntity[] getAllProducts() throws ParseException {
+        return userWishListRepository.findByUserId(userService.getMe());
+    }
     
 }
