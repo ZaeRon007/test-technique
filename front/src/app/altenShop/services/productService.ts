@@ -9,15 +9,13 @@ import { HttpClient } from "@angular/common/http";
 })
 export class ProductService {
     private apiUrl = environment.baseUrl;
-    private products$ = new BehaviorSubject<productEntity[]>([new productEntity])
 
-    constructor(private http: HttpClient){
+    constructor(private http: HttpClient) {
 
+    }
+
+    public getAllProducts(): Observable<productEntity[]> {
+        return this.http.get<productEntity[]>(`${this.apiUrl}products`);
     }
     
-    public getAllProducts(): Observable<productEntity[]>{
-        return this.http.get<productEntity[]>(`${this.apiUrl}products`).pipe(
-            tap(produit => this.products$.next(produit))
-        );
-    }
 }

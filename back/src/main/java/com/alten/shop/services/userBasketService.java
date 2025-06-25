@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alten.shop.model.userBasketEntity;
-import com.alten.shop.model.dto.itemAmountInUserBasketDto;
 import com.alten.shop.model.dto.userBasketDto;
 import com.alten.shop.repository.userBasketRepository;
 
@@ -41,7 +40,7 @@ public class userBasketService {
 
     }
 
-    public Object patchProductFromUserBasket(String product_id, userBasketDto userBasketDto)
+    public userBasketEntity patchProductFromUserBasket(String product_id, userBasketDto userBasketDto)
             throws NumberFormatException, ParseException {
         userBasketEntity entity = userBasketRepository.findByProductIdAndUserId(Integer.parseInt(product_id),
                 userService.getMe());
@@ -60,8 +59,8 @@ public class userBasketService {
         return userBasketRepository.findByUserId(userService.getMe());
     }
 
-    public itemAmountInUserBasketDto getAmountInUserBasket(String id) throws NumberFormatException, ParseException {
-        itemAmountInUserBasketDto item = new itemAmountInUserBasketDto();
+    public userBasketDto getAmountInUserBasket(String id) throws NumberFormatException, ParseException {
+        userBasketDto item = new userBasketDto();
         item.setQuantity(userBasketRepository.findByProductIdAndUserId(Integer.parseInt(id), userService.getMe()).getQuantity());
         return item;
     }
