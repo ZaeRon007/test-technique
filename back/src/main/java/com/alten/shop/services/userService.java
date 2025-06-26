@@ -102,6 +102,6 @@ public class userService {
      * Fonction permettant de vérifier que l'utilisateur est bien administrateur
      */
     public boolean canActivate(){
-        return getUsername() == "admin@admin.com";
+        return getUsername().equals("admin@admin.com");
     }
 }
